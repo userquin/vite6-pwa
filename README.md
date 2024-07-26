@@ -12,7 +12,7 @@ This repository has the following changes in `server/plugins` folder:
 
 I have no idea how to add `workbox-window` to `ssr.noExternal`, code in [main plugin](./server/plugins/main.ts), check `config` hook,
 
-Some warnings about deprecated `vite` functions, not yet tested in [pwa-assets plugin][./server/plugins/pwa-assets.ts]:
+Some warnings about deprecated `vite` functions, not yet tested in [pwa-assets plugin](./server/plugins/pwa-assets.ts):
 - `handleHotUpdate`
 - `server.moduleGraph.getModuleById`
 
