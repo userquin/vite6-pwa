@@ -1,0 +1,23 @@
+{
+  "name": "vite-typescript-starter",
+  "private": true,
+  "version": "0.0.0",
+  "packageManager": "pnpm@9.6.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.12",
+    "@vite-pwa/assets-generator": "^0.2.4",
+    "kolorist": "^1.8.0",
+    "rollup": "^4.19.0",
+    "tinyglobby": "^0.2.0",
+    "typescript": "^5.5.3",
+    "vite": "^6.0.0-alpha.18",
+    "workbox-build": "^7.1.1",
+    "workbox-window": "^7.1.0"
+  }
+}
