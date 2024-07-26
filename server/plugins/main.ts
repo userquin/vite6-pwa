@@ -1,4 +1,4 @@
-import type { Plugin } from 'vite'
+import type { Plugin, UserConfig } from 'vite'
 import { cyan, yellow } from 'kolorist'
 import {
   VIRTUAL_MODULES,
@@ -15,8 +15,8 @@ export function MainPlugin(ctx: PWAPluginContext, api: VitePluginPWAAPI) {
   return <Plugin>{
     name: 'vite-plugin-pwa',
     enforce: 'pre',
-    config(config) {
-      console.log(config.environments)
+    config(_config) {
+      /*console.log(config.environments)
       if (config.environments) {
         const environments = config.environments
         Object.keys(environments).forEach((key) => {
@@ -29,13 +29,13 @@ export function MainPlugin(ctx: PWAPluginContext, api: VitePluginPWAAPI) {
           )]
           resolve.noExternal = [...noExternal, 'workbox-window']
         })
-      }
-      /*return <UserConfig>{
+      }*/
+      return <UserConfig>{
         ssr: {
           // TODO: remove until workbox-window support native ESM
           noExternal: ['workbox-window'],
         },
-      }*/
+      }
     },
     async configResolved(config) {
       ctx.useImportRegister = false
