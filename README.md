@@ -15,3 +15,9 @@ I have no idea how to add `workbox-window` to `ssr.noExternal`, code in [main pl
 Some warnings about deprecated `vite` functions, not yet tested in [pwa-assets plugin][./server/plugins/pwa-assets.ts]:
 - `handleHotUpdate`
 - `server.moduleGraph.getModuleById`
+
+## TODO
+
+- [ ] fix `workbox-window` in `ssr.noExternal`
+- [ ] check `pwa-assets` plugin (use a new branch)
+- [ ] check SSR app
