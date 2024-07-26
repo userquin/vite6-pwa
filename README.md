@@ -21,3 +21,4 @@ Some warnings about deprecated `vite` functions, not yet tested in [pwa-assets p
 - [ ] fix `workbox-window` in `ssr.noExternal`
 - [ ] check `pwa-assets` plugin (use a new branch)
 - [ ] check SSR app
+- [ ] check some meta-framework app
