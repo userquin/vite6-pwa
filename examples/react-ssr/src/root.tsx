@@ -4,7 +4,7 @@ import { useRegisterSW } from 'virtual:pwa-register/react'
 export default function Root() {
     const [count, setCount] = React.useState(0)
 
-    if (typeof navigator !== 'undefined')
+    if (!import.meta.env.SSR)
         useRegisterSW({ immediate: true })
 
     const [hydrated, setHydrated] = React.useState(false)
