@@ -7,7 +7,7 @@ export default defineConfig({
         injectRegister: 'auto',
         includeAssets: ['favicon.svg', 'vite.svg'],
         workbox: {
-            globPatterns: ['***.{js,css,html,png}'],
+            globPatterns: ['**/*.{js,css,html,png}'],
         },
         manifest: {
             name: 'Vite PWA',
