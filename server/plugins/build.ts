@@ -31,8 +31,8 @@ export function BuildPlugin(ctx: PWAPluginContext) {
       },
     },
     async generateBundle(_, bundle) {
-      // if (ctx.viteConfig.build.ssr)
-      //   return
+      if (ctx.viteConfig.build.ssr)
+        return
 
       const pwaAssetsGenerator = await ctx.pwaAssetsGenerator
       if (pwaAssetsGenerator)
