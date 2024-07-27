@@ -1,6 +1,12 @@
 /// <reference types="vite/client" />
 /// <reference lib="webworker" />
 
+
+declare module 'virtual:message' {
+    const message: string
+    export { message }
+}
+
 declare module 'virtual:pwa-info' {
     export interface PwaInfo {
         pwaInDevEnvironment: boolean

@@ -1,9 +1,24 @@
 import process from 'node:process'
-import { defineConfig } from 'vite'
+import {defineConfig, type Plugin} from 'vite'
 import react from '@vitejs/plugin-react'
 import type { ManifestOptions, VitePWAOptions } from '../../server'
 import { VitePWA } from '../../server'
 import replace from '@rollup/plugin-replace'
+
+function virtualMessagePlugin() {
+  const virtual = 'virtual:message'
+  const resolvedVirtual = `\0${virtual}`
+  return {
+    name: 'vite-plugin-test',
+    resolveId(id) {
+      return id === virtual ? resolvedVirtual : null
+    },
+    load(id) {
+      if (id === resolvedVirtual)
+        return `export const message = 'Message from Virtual Module Plugin'`
+    },
+  } satisfies Plugin
+}
 
 const pwaOptions: Partial<VitePWAOptions> = {
   mode: 'development',
@@ -54,6 +69,9 @@ if (process.env.SW === 'true') {
   pwaOptions.injectManifest = {
     minify: false,
     enableWorkboxModulesLogs: true,
+    buildPlugins: {
+      vite: [virtualMessagePlugin()]
+    },
   }
 }
 
@@ -79,6 +97,7 @@ export default defineConfig({
     sourcemap: process.env.SOURCE_MAP === 'true',
   },
   plugins: [
+    virtualMessagePlugin(),
     react(),
     VitePWA(pwaOptions),
     replace(replaceOptions),
