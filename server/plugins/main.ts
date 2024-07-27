@@ -1,4 +1,4 @@
-import type { Plugin, UserConfig } from 'vite'
+import type { Plugin/*, UserConfig*/ } from 'vite'
 import { cyan, yellow } from 'kolorist'
 import {
   VIRTUAL_MODULES,
@@ -15,28 +15,44 @@ export function MainPlugin(ctx: PWAPluginContext, api: VitePluginPWAAPI) {
   return <Plugin>{
     name: 'vite-plugin-pwa',
     enforce: 'pre',
-    config(_config) {
-      /*console.log(config.environments)
-      if (config.environments) {
-        const environments = config.environments
-        Object.keys(environments).forEach((key) => {
-          const resolve = environments[key].resolve = environments[key].resolve ?? {}
-          const noExternal = [...(Array.isArray(resolve.noExternal)
-                  ? resolve.noExternal
-                  : resolve.noExternal && typeof resolve.noExternal !== 'boolean'
-                      ? [resolve.noExternal]
-                      : []
-          )]
-          resolve.noExternal = [...noExternal, 'workbox-window']
-        })
-      }*/
+    configEnvironment(_name, config) {
+      if (config.build?.ssr) {
+        return {
+            build: {
+              resolve: {
+                noExternal: ['workbox-window'],
+              }
+            },
+            dev: {
+                resolve: {
+                  noExternal: ['workbox-window'],
+                }
+            }
+        }
+      }
+
+      return {
+        build: {
+          optimizeDeps: {
+            include: ['workbox-window'],
+          }
+        },
+        dev: {
+          optimizeDeps: {
+            include: ['workbox-window'],
+          }
+        }
+      }
+    },
+    /*config(config, env) {
+      console.log('config', { command: env.command, ssr: config.ssr })
       return <UserConfig>{
         ssr: {
           // TODO: remove until workbox-window support native ESM
           noExternal: ['workbox-window'],
         },
       }
-    },
+    },*/
     async configResolved(config) {
       ctx.useImportRegister = false
       ctx.viteConfig = config
