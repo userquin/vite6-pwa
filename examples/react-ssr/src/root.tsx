@@ -4,8 +4,7 @@ import { useRegisterSW } from 'virtual:pwa-register/react'
 export default function Root() {
     const [count, setCount] = React.useState(0)
 
-    if (!import.meta.env.SSR)
-        useRegisterSW({ immediate: true })
+    useRegisterSW({ immediate: true })
 
     const [hydrated, setHydrated] = React.useState(false)
     React.useEffect(() => {

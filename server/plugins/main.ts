@@ -16,30 +16,24 @@ export function MainPlugin(ctx: PWAPluginContext, api: VitePluginPWAAPI) {
     name: 'vite-plugin-pwa',
     enforce: 'pre',
     configEnvironment(_name, config) {
-      if (config.build?.ssr) {
+      if (config.consumer === 'server') {
         return {
-            build: {
-              resolve: {
-                noExternal: ['workbox-window'],
-              }
-            },
-            dev: {
-                resolve: {
-                  noExternal: ['workbox-window'],
-                }
-            }
+          resolve: {
+            noExternal: ['workbox-window']
+          }
         }
       }
-
-      return {
-        build: {
-          optimizeDeps: {
-            include: ['workbox-window'],
-          }
-        },
-        dev: {
-          optimizeDeps: {
-            include: ['workbox-window'],
+      else if (config.consumer === 'client') {
+        return {
+          build: {
+            optionsDeps: {
+              include: ['workbox-window']
+            }
+          },
+          dev: {
+            optionsDeps: {
+              include: ['workbox-window']
+            }
           }
         }
       }
@@ -84,6 +78,13 @@ export function MainPlugin(ctx: PWAPluginContext, api: VitePluginPWAAPI) {
 
       if (VIRTUAL_MODULES.includes(id)) {
         ctx.useImportRegister = true
+        if (this.environment.config.consumer === 'server') {
+          return generateRegisterSW(
+              ctx.options,
+              'dev',
+              VIRTUAL_MODULES_MAP[id],
+          )
+        }
         if (ctx.viteConfig.command === 'serve' && ctx.options.devOptions.enabled) {
           return generateRegisterSW(
             { ...ctx.options, filename: swDevOptions.swUrl },
