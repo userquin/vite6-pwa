@@ -25,11 +25,6 @@ export function MainPlugin(ctx: PWAPluginContext, api: VitePluginPWAAPI) {
       }
       else if (config.consumer === 'client') {
         return {
-          build: {
-            optionsDeps: {
-              include: ['workbox-window']
-            }
-          },
           dev: {
             optionsDeps: {
               include: ['workbox-window']
