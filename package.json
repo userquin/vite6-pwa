@@ -10,13 +10,14 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.0",
     "@types/node": "^20.14.12",
     "@vite-pwa/assets-generator": "^0.2.4",
     "kolorist": "^1.8.0",
     "rollup": "^4.19.0",
     "tinyglobby": "^0.2.0",
     "typescript": "^5.5.3",
-    "vite": "^6.0.0-alpha.18",
+    "vite": "6.0.0-alpha.19",
     "workbox-build": "^7.1.1",
     "workbox-window": "^7.1.0"
   }

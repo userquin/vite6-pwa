@@ -1,8 +1,9 @@
-import {defineConfig} from "vite";
+import { defineConfig} from "vite";
 import { VitePWA } from "./server"
 
 export default defineConfig({
-    plugins: [VitePWA({
+    plugins: [
+      VitePWA({
         registerType: 'autoUpdate',
         injectRegister: 'auto',
         includeAssets: ['favicon.svg', 'vite.svg'],

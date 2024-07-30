@@ -57,6 +57,9 @@ export async function configureStaticAssets(
   resolvedVitePWAOptions: ResolvedVitePWAOptions,
   viteConfig: ResolvedConfig,
 ) {
+  if (viteConfig.command === 'build' && viteConfig.build.ssr)
+    return
+
   const {
     manifest,
     strategies,
